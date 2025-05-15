@@ -1,0 +1,1 @@
+ C:\\Users\\LPola\\Desktop\\MultiMedia\\multimedia\\.dart_tool\\flutter_build\\397eae16f594323427ebc82a941391bb\\native_assets.yaml: 
