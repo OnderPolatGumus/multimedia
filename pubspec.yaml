@@ -12,9 +12,7 @@ dependencies:
   intl: ^0.20.1
   path_provider: ^2.1.5
   permission_handler: ^11.3.1
-  XDtoFlutter:
-    git:
-      url: https://github.com/OnderPolatGumus/fixedXDtoFlutter.git
+  syncfusion_flutter_gauges: ^29.1.38
 
 dev_dependencies:
   flutter_test:

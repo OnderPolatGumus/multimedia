@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class VehicleData {
   final String label;
@@ -25,9 +27,6 @@ String getFormattedDate() {
   DateTime now = DateTime.now();
   return DateFormat('yyyy-MM-dd').format(now);
 }
-
-String deviceDate = getFormattedDate();
-String deviceTime = getFormattedTime();
 
 class _DashboardScreenState extends State<DashboardScreen> {
   List<VehicleData> vehicleDataList = [
@@ -65,7 +64,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   void startPeriodicUpdates() {
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(Duration(milliseconds: 10), (timer) {
       setState(() {
         timervar += 100;
         updateValue(0, '${(12.0 + (timer.tick * 0.01)).toStringAsFixed(2)}V');
@@ -109,6 +108,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
     });
   }
 
+  double parseSpeed(String rawSpeed) {
+    return double.tryParse(rawSpeed.replaceAll(RegExp(r'[^0-9.]'), '')) ?? 0;
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -120,9 +123,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
         height: screenHeight,
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Colors.black, Color.fromARGB(255, 37, 37, 37)],
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+            colors: [
+              Color(0xFFB3B6B7),
+              Color(0xFF5D6D7E),
+              Color(0xFF2E3B4E),
+              Color(0xFF5D6D7E),
+              Color(0xFFB3B6B7),
+            ],
+            stops: [0.0, 0.25, 0.5, 0.75, 1.0],
           ),
         ),
         child: LayoutBuilder(
@@ -136,38 +146,45 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Date : $date",
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white)),
-                        Text('Time: $time',
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white)),
-                        SizedBox(height: 50),
-                        Text(speed,
-                            style: TextStyle(
-                                fontSize: 60,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white)),
-                        SizedBox(height: 50),
-                        Text('Fuel (Km): $fuelkmh',
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white)),
-                        Text('Fuel (Wh): $fuelWh',
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white)),
-                        Text('Battery Voltage: $batteryVoltage',
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white)),
+                        Text("Date : $date", style: TextStyle(fontSize: 22, color: Colors.white)),
+                        Text("Time: $time", style: TextStyle(fontSize: 16, color: Colors.white)),
+                        SizedBox(height: 20),
+                        SizedBox(
+                          height: 300,
+                          width: 300,
+                          child: SfRadialGauge(
+                            axes: <RadialAxis>[
+                              RadialAxis(
+                                minimum: 0,
+                                maximum: 240,
+                                ranges: <GaugeRange>[
+                                  GaugeRange(startValue: 0, endValue: 120, color: Colors.green),
+                                  GaugeRange(startValue: 120, endValue: 180, color: Colors.orange),
+                                  GaugeRange(startValue: 180, endValue: 240, color: Colors.red),
+                                ],
+                                pointers: <GaugePointer>[
+                                  NeedlePointer(value: parseSpeed(speed))
+                                ],
+                                annotations: <GaugeAnnotation>[
+                                  GaugeAnnotation(
+                                    widget: Text(
+                                      speed,
+                                      style: TextStyle(fontSize: 22, color: Colors.white),
+                                    ),
+                                    angle: 90,
+                                    positionFactor: 0.75,
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        Text("Speed: $speed", style: TextStyle(fontSize: 20, color: Colors.white)),
+                        SizedBox(height: 30),
+                        Text("Fuel (Km): $fuelkmh", style: TextStyle(fontSize: 14, color: Colors.white)),
+                        Text("Fuel (Wh): $fuelWh", style: TextStyle(fontSize: 14, color: Colors.white)),
+                        Text("Battery Voltage: $batteryVoltage", style: TextStyle(fontSize: 14, color: Colors.white)),
                       ],
                     ),
                   ),
@@ -182,18 +199,22 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       children: vehicleDataList.map((data) {
                         return Row(
                           children: [
-                            Text(data.label,
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white)),
+                            Text(
+                              data.label,
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
                             SizedBox(width: 10),
                             Text(
                               data.value ?? '0',
                               style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
                             ),
                           ],
                         );
