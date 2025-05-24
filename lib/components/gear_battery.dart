@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../mediaScreen.dart';
+import '../painterClasses.dart';
 import 'gears.dart';
 
 class GearAndBattery extends StatelessWidget {
