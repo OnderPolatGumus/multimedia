@@ -9,12 +9,16 @@
       "dependencies": [
         "fl_chart",
         "flutter",
+        "flutter_map",
         "flutter_svg",
         "google_fonts",
+        "http",
         "intl",
+        "latlong2",
         "path_provider",
         "permission_handler",
-        "syncfusion_flutter_gauges"
+        "syncfusion_flutter_gauges",
+        "window_size"
       ],
       "devDependencies": [
         "flutter_lints",
@@ -54,6 +58,47 @@
         "test_api",
         "vector_math",
         "vm_service"
+      ]
+    },
+    {
+      "name": "window_size",
+      "version": "0.1.0",
+      "dependencies": [
+        "flutter"
+      ]
+    },
+    {
+      "name": "http",
+      "version": "1.4.0",
+      "dependencies": [
+        "async",
+        "http_parser",
+        "meta",
+        "web"
+      ]
+    },
+    {
+      "name": "flutter_map",
+      "version": "8.1.1",
+      "dependencies": [
+        "async",
+        "collection",
+        "dart_earcut",
+        "flutter",
+        "http",
+        "latlong2",
+        "logger",
+        "meta",
+        "polylabel",
+        "proj4dart",
+        "vector_math"
+      ]
+    },
+    {
+      "name": "latlong2",
+      "version": "0.9.1",
+      "dependencies": [
+        "intl"
       ]
     },
     {
@@ -307,6 +352,47 @@
       ]
     },
     {
+      "name": "web",
+      "version": "1.1.0",
+      "dependencies": []
+    },
+    {
+      "name": "http_parser",
+      "version": "4.1.1",
+      "dependencies": [
+        "collection",
+        "source_span",
+        "string_scanner",
+        "typed_data"
+      ]
+    },
+    {
+      "name": "proj4dart",
+      "version": "2.1.0",
+      "dependencies": [
+        "meta",
+        "mgrs_dart",
+        "wkt_parser"
+      ]
+    },
+    {
+      "name": "polylabel",
+      "version": "1.0.1",
+      "dependencies": [
+        "collection"
+      ]
+    },
+    {
+      "name": "logger",
+      "version": "2.5.0",
+      "dependencies": []
+    },
+    {
+      "name": "dart_earcut",
+      "version": "1.2.0",
+      "dependencies": []
+    },
+    {
       "name": "vector_graphics_compiler",
       "version": "1.1.16",
       "dependencies": [
@@ -330,16 +416,6 @@
         "flutter",
         "http",
         "vector_graphics_codec"
-      ]
-    },
-    {
-      "name": "http",
-      "version": "1.2.2",
-      "dependencies": [
-        "async",
-        "http_parser",
-        "meta",
-        "web"
       ]
     },
     {
@@ -455,14 +531,28 @@
       ]
     },
     {
-      "name": "web",
-      "version": "1.1.0",
-      "dependencies": []
-    },
-    {
       "name": "sky_engine",
       "version": "0.0.0",
       "dependencies": []
+    },
+    {
+      "name": "typed_data",
+      "version": "1.4.0",
+      "dependencies": [
+        "collection"
+      ]
+    },
+    {
+      "name": "wkt_parser",
+      "version": "2.0.0",
+      "dependencies": []
+    },
+    {
+      "name": "mgrs_dart",
+      "version": "2.0.0",
+      "dependencies": [
+        "unicode"
+      ]
     },
     {
       "name": "xml",
@@ -485,23 +575,6 @@
       "name": "args",
       "version": "2.7.0",
       "dependencies": []
-    },
-    {
-      "name": "http_parser",
-      "version": "4.1.1",
-      "dependencies": [
-        "collection",
-        "source_span",
-        "string_scanner",
-        "typed_data"
-      ]
-    },
-    {
-      "name": "typed_data",
-      "version": "1.4.0",
-      "dependencies": [
-        "collection"
-      ]
     },
     {
       "name": "plugin_platform_interface",
@@ -541,8 +614,22 @@
       ]
     },
     {
+      "name": "unicode",
+      "version": "0.3.1",
+      "dependencies": [
+        "lists"
+      ]
+    },
+    {
       "name": "petitparser",
       "version": "6.0.2",
+      "dependencies": [
+        "meta"
+      ]
+    },
+    {
+      "name": "lists",
+      "version": "1.0.1",
       "dependencies": [
         "meta"
       ]

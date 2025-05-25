@@ -44,6 +44,12 @@
       "languageVersion": "3.4"
     },
     {
+      "name": "dart_earcut",
+      "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/dart_earcut-1.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "equatable",
       "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/equatable-2.0.7",
       "packageUri": "lib/",
@@ -80,6 +86,12 @@
       "languageVersion": "3.5"
     },
     {
+      "name": "flutter_map",
+      "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/flutter_map-8.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
+    },
+    {
       "name": "flutter_svg",
       "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/flutter_svg-2.1.0",
       "packageUri": "lib/",
@@ -105,9 +117,9 @@
     },
     {
       "name": "http",
-      "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/http-1.2.2",
+      "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/http-1.4.0",
       "packageUri": "lib/",
-      "languageVersion": "3.3"
+      "languageVersion": "3.4"
     },
     {
       "name": "http_parser",
@@ -120,6 +132,12 @@
       "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/intl-0.20.1",
       "packageUri": "lib/",
       "languageVersion": "3.3"
+    },
+    {
+      "name": "latlong2",
+      "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/latlong2-0.9.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
     },
     {
       "name": "leak_tracker",
@@ -146,6 +164,18 @@
       "languageVersion": "3.6"
     },
     {
+      "name": "lists",
+      "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/lists-1.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "logger",
+      "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/logger-2.5.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "matcher",
       "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/matcher-0.12.17",
       "packageUri": "lib/",
@@ -160,6 +190,12 @@
     {
       "name": "meta",
       "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/meta-1.16.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "mgrs_dart",
+      "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/mgrs_dart-2.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -266,6 +302,18 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "polylabel",
+      "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/polylabel-1.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.13"
+    },
+    {
+      "name": "proj4dart",
+      "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/proj4dart-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "sky_engine",
       "rootUri": "file:///home/onderpolatgumus/snap/flutter/common/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
@@ -326,6 +374,12 @@
       "languageVersion": "3.5"
     },
     {
+      "name": "unicode",
+      "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/unicode-0.3.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "vector_graphics",
       "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/vector_graphics-1.1.18",
       "packageUri": "lib/",
@@ -360,6 +414,18 @@
       "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/web-1.1.0",
       "packageUri": "lib/",
       "languageVersion": "3.4"
+    },
+    {
+      "name": "window_size",
+      "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/window_size-0.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "wkt_parser",
+      "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/wkt_parser-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "xdg_directories",
