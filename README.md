@@ -1,3 +1,6 @@
+Test mesajı
+
+
 # Flutter Vehicle Dashboard UI
 
 Bu proje, Flutter kullanılarak geliştirilmiş basit bir araç veri ekranı simülasyonudur.
