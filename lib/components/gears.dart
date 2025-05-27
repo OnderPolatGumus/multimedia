@@ -33,8 +33,8 @@ class _GearsState extends State<Gears> {
                   widget.gears[index],
                   style: TextStyle(
                     color: index == selectedGearIndex
-                        ? const Color(0xFF6D453A)
-                        : Colors.white.withOpacity(0.16),
+                        ? const Color.fromARGB(255, 207, 213, 216)
+                        : Colors.white10,
                   ),
                 ),
               )),

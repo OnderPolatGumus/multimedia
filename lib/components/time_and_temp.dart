@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class TimeAndTemp extends StatelessWidget {
+  final BoxConstraints constraints;
+  final String time;
+  final String temperature;
+
   const TimeAndTemp({
     Key? key,
     required this.constraints,
+    required this.time,
+    required this.temperature,
   }) : super(key: key);
-
-  final BoxConstraints constraints;
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +22,14 @@ class TimeAndTemp extends StatelessWidget {
         style: Theme.of(context).textTheme.titleMedium!,
         child: Row(
           children: [
-            const Text("05:21 PM"),
+            Text(time),
             const Spacer(),
             SvgPicture.asset(
               "assets/icons/sun.svg",
               height: 32,
             ),
             const SizedBox(width: 4),
-            const Text("18 °C"),
+            Text(temperature),
           ],
         ),
       ),

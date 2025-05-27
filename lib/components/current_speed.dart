@@ -18,7 +18,7 @@ class CurrentSpeed extends StatelessWidget {
             end: Alignment.bottomCenter,
             colors: [
               Colors.white,
-              Colors.white.withOpacity(0),
+              Colors.white,
             ],
           ).createShader(
             Rect.fromLTWH(0.0, 0.0, bounds.width, bounds.height),

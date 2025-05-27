@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
+import '../components/dashboard_colors.dart';
 
 class PathPainter extends CustomPainter {
   @override
@@ -8,7 +9,7 @@ class PathPainter extends CustomPainter {
       ..shader = ui.Gradient.linear(
         const Offset(0, 0),
         Offset(size.width, size.height),
-        [const Color(0xFF080A6B), const Color(0xFF280569)],
+        DashboardColors.pathGradient,
       )
       ..style = PaintingStyle.stroke
       ..strokeWidth = 6;
@@ -40,10 +41,7 @@ class SpeedLinePainter extends CustomPainter {
       ..shader = ui.Gradient.linear(
         Offset(size.width, 0),
         Offset(0, size.height),
-        [
-          const Color(0xFF0D47A1).withOpacity(1),
-          const Color(0xFF0D47A1).withOpacity(0.8)
-        ],
+        DashboardColors.speedLineGradient,
       )
       ..style = PaintingStyle.fill;
 
@@ -72,10 +70,9 @@ class GearPrinter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()
-      ..color = const Color(0xFF52342C)
+      ..color = DashboardColors.gearFill
       ..style = PaintingStyle.fill;
 
-    // paint.shader = LinearGradient(colors: colors)
     const double strokeWidth = 2;
     Path path = Path();
     path.moveTo(0, size.height);
@@ -87,8 +84,6 @@ class GearPrinter extends CustomPainter {
     path.lineTo(size.width * 0.42, strokeWidth);
     path.lineTo(size.width * 0.34, size.height * 0.5 + strokeWidth);
     path.lineTo(size.width * 0.17, size.height * 0.5 + strokeWidth);
-    // path.moveTo(size.width * 0.52, 0);
-
     path.close();
     canvas.drawPath(path, paint);
 
@@ -117,7 +112,7 @@ class DashLinePainter extends CustomPainter {
   DashLinePainter({required this.progress});
 
   final Paint _paint = Paint()
-    ..color = const Color(0xFF52342C)
+    ..color = DashboardColors.dashLine
     ..strokeWidth = 10.0
     ..style = PaintingStyle.stroke
     ..strokeJoin = StrokeJoin.round;

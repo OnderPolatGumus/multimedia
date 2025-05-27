@@ -78,29 +78,12 @@ class _MapviewScreenState extends State<MapviewScreen> {
               ),
           ],
         ),
-        Positioned(
-          bottom: 20,
-          right: 20,
-          child: ElevatedButton.icon(
-            onPressed: widget.onExit,
-            icon: const Icon(Icons.arrow_back),
-            label: const Text('Geri'),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.black.withOpacity(0.7),
-              foregroundColor: Colors.white,
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-          ),
-        ),
       ],
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return _cachedMap ?? const Center(child: CircularProgressIndicator());
+    return _cachedMap ?? const SizedBox();
   }
 }
