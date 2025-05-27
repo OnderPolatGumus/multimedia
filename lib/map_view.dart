@@ -2,11 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter/cupertino.dart';
 import 'dart:convert';
 
 class MapviewScreen extends StatefulWidget {
   final VoidCallback onExit;
-  const MapviewScreen({super.key, required this.onExit});
+  final VoidCallback? onMapReady; // <-- Ekledik
+
+  const MapviewScreen({
+    Key? key,
+    required this.onExit,
+    this.onMapReady,
+  }) : super(key: key);
 
   @override
   State<MapviewScreen> createState() => _MapviewScreenState();
@@ -15,7 +22,7 @@ class MapviewScreen extends StatefulWidget {
 class _MapviewScreenState extends State<MapviewScreen> {
   final mapController = MapController();
   List<LatLng> routePoints = [];
-  late final Widget _cachedMap; // Harita bir kez oluşturulur
+  Widget? _cachedMap; // nullable hale getirdik
 
   @override
   void initState() {
@@ -24,18 +31,25 @@ class _MapviewScreenState extends State<MapviewScreen> {
   }
 
   Future<void> fetchRoute() async {
-    final response = await http.get(Uri.parse(
-      'https://router.project-osrm.org/route/v1/driving/28.9784,41.0082;32.8541,39.9208?overview=full&geometries=geojson',
-    ));
-    final data = jsonDecode(response.body);
-    final coords = data['routes'][0]['geometry']['coordinates'] as List;
-    final points = coords.map((c) => LatLng(c[1], c[0])).toList();
+    try {
+      final response = await http.get(Uri.parse(
+        'https://router.project-osrm.org/route/v1/driving/28.9784,41.0082;32.8541,39.9208?overview=full&geometries=geojson',
+      ));
 
-    routePoints = points;
+      final data = jsonDecode(response.body);
+      final coords = data['routes'][0]['geometry']['coordinates'] as List;
+      final points = coords.map((c) => LatLng(c[1], c[0])).toList();
 
-    // Sadece bir defa widget oluştur
-    _cachedMap = _buildMap();
-    setState(() {});
+      routePoints = points;
+      _cachedMap = _buildMap();
+
+      // onMapReady callback'ini çağır
+      widget.onMapReady?.call();
+
+      setState(() {});
+    } catch (e) {
+      debugPrint('Harita rotası alınamadı: $e');
+    }
   }
 
   Widget _buildMap() {
