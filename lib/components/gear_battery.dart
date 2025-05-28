@@ -32,13 +32,13 @@ class GearAndBattery extends StatelessWidget {
                       text: "Rest. ",
                       style: TextStyle(
                         fontSize: 16,
-                        color: Colors.white.withOpacity(0.16),
+                        color: Colors.white38,
                       ),
                       children: const [
                         TextSpan(
                           text: "465km",
                           style: TextStyle(
-                            color: Color(0xFF77C000),
+                            color: Color.fromARGB(255, 255, 255, 255),
                           ),
                         ),
                       ],
@@ -55,7 +55,7 @@ class GearAndBattery extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w500,
-                              color: Colors.white.withOpacity(0.16),
+                              color: Colors.white38,
                             ),
                           ),
                           const SizedBox(width: 10),
@@ -75,7 +75,7 @@ class GearAndBattery extends StatelessWidget {
                             child: Text(
                               "100%",
                               style: TextStyle(
-                                color: Color(0xFF77C000),
+                                color: Color.fromARGB(255, 255, 255, 255),
                               ),
                             ),
                           )
@@ -101,14 +101,14 @@ class GearAndBattery extends StatelessWidget {
                       "Avg. ",
                       style: TextStyle(
                         fontSize: 16,
-                        color: Colors.white.withOpacity(0.16),
+                        color: Colors.white24,
                       ),
                     ),
                     Text(
                       "11.3 w/km",
                       style: TextStyle(
                         fontSize: 16,
-                        color: Colors.white.withOpacity(0.32),
+                        color: Colors.white54,
                       ),
                     ),
                   ],
@@ -128,14 +128,14 @@ class GearAndBattery extends StatelessWidget {
                       "ODO. ",
                       style: TextStyle(
                         fontSize: 16,
-                        color: Colors.white.withOpacity(0.16),
+                        color: Colors.white24,
                       ),
                     ),
                     Text(
                       "6666.6km",
                       style: TextStyle(
                         fontSize: 16,
-                        color: Colors.white.withOpacity(0.32),
+                        color: Colors.white54,
                       ),
                     ),
                   ],

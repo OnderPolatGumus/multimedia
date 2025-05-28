@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import '../components/dashboard_colors.dart';
 
 class CurrentSpeed extends StatelessWidget {
   const CurrentSpeed({
     Key? key,
-    this.speed = 00,
+    this.speed = 0,
   }) : super(key: key);
+
   final int speed;
 
   @override
@@ -16,15 +18,12 @@ class CurrentSpeed extends StatelessWidget {
           shaderCallback: (bounds) => LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [
-              Colors.white,
-              Colors.white,
-            ],
+            colors: DashboardColors.speedTextGradient,
           ).createShader(
-            Rect.fromLTWH(0.0, 0.0, bounds.width, bounds.height),
+            Rect.fromLTWH(0, 0, bounds.width, bounds.height),
           ),
           child: Text(
-            "$speed",
+            '$speed',
             style: const TextStyle(
               fontSize: 96,
               fontWeight: FontWeight.w500,
@@ -32,10 +31,13 @@ class CurrentSpeed extends StatelessWidget {
             ),
           ),
         ),
-        const Text(
-          "km/h",
-          style: TextStyle(fontSize: 20, color: Colors.white30),
-        )
+        Text(
+          'km/h',
+          style: TextStyle(
+            fontSize: 20,
+            color: DashboardColors.speedUnitColor,
+          ),
+        ),
       ],
     );
   }

@@ -1,40 +1,56 @@
 import 'package:flutter/material.dart';
 
 class DashboardColors {
-  // Arka plan gradyanı: koyu mavi -> açık mavi
+  // İkinci Açık Mavi
+  static const Color backgroundColour2 = Color.fromARGB(255, 50, 90, 135);
+
+  // Arka plan gradyanı: koyu lacivert → açık mavi
   static const LinearGradient backgroundGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
     colors: [
       Color(0xFF0A192F), // koyu lacivert-mavi
-      Color(0xFF1E3A5F), // biraz daha açık
+      backgroundColour2, // biraz daha açık
     ],
   );
 
   // Vurgu rengi (örneğin hız göstergesi)
-  static const Color accentBlue = Color(0xFF48CAE4); // açık mavi
+  static const Color accentBlue = Color(0xFF48CAE4);
 
   // Genel metin rengi
   static const Color textWhite = Colors.white;
 
-  // Düğme arka plan rengi
-  static const Color buttonBackground = Color(0xFF1B263B); // koyu mavi
+  // “km/h” birim metni rengi
+  static const Color speedUnitColor = Colors.white30;
 
-  // CustomPainter için gradient renkleri (path)
+  // Hız sayısı (CurrentSpeed) için ShaderMask gradyanı
+  static const List<Color> speedTextGradient = [
+    textWhite,
+    textWhite,
+  ];
+
+  // Düğme arka plan rengi
+  static const Color buttonBackground = Color(0xFF1B263B);
+
+  // PathPainter gradyanı
   static const List<Color> pathGradient = [
     Color(0xFF1E3A5F),
     Color(0xFF3C7FA6),
   ];
 
-  // Hız çizgisi gradyanı (tek tonlu açık mavi)
+  // SpeedLinePainter gradyanı
   static const List<Color> speedLineGradient = [
-    Color(0xFF48CAE4),
-    Color(0xFF48CAE4),
+    accentBlue,
+    accentBlue,
   ];
 
-  // Vites dolgu rengi
-  static const Color gearFill = Color(0xFF3C7FA6); // mavi
+  // GearPrinter dolgu rengi
+  static const Color gearFill = Color(0xFF3C7FA6);
 
-  // Kırık çizgi rengi
-  static const Color dashLine = Color(0xFF48CAE4); // açık mavi
+  // DashLinePainter rengi
+  static const Color dashLine = accentBlue;
+
+  // Bluetooth Classic arka plan renkleri
+  static const Color blcBackground1 = Color(0xFF1E395A);
+  static const Color blcBackground2 = backgroundColour2;
 }

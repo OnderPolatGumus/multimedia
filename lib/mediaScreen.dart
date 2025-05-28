@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -10,6 +10,7 @@ import 'components/car_indicators.dart';
 import 'components/current_speed.dart';
 import 'components/gear_battery.dart';
 import 'components/time_and_temp.dart';
+import 'bluetooth_devices.dart';
 import 'map_view.dart';
 
 String getFormattedTime() => DateFormat('HH:mm:ss').format(DateTime.now());
@@ -32,6 +33,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   int _tickCounter = 0;
   bool _showMap = false;
   bool _isMapLoading = false;
+  bool _showBluetoothList = false;
 
   final List<VehicleData> _vehicleDataList = [
     VehicleData(label: 'Battery Voltage', value: '12.8V'),
@@ -44,14 +46,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
     VehicleData(label: 'Tire Pressure RL', value: '34 PSI'),
     VehicleData(label: 'Tire Pressure RR', value: '32 PSI'),
     VehicleData(label: 'Fuel (Wh)', value: '1500 Wh'),
-    VehicleData(label: 'Fuel (kmh)', value: '0 km/h'),
+    VehicleData(label: 'Fuel (km/h)', value: '0 km/h'),
     VehicleData(label: 'Time', value: getFormattedTime()),
     VehicleData(label: 'Start', value: '0 ms'),
     VehicleData(label: 'Date', value: getFormattedDate()),
   ];
 
   void _startPeriodicUpdates() {
-    _timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
+    _timer = Timer.periodic(const Duration(milliseconds: 100), (_) {
       setState(() {
         _tickCounter++;
         _vehicleDataList[11].value = getFormattedTime();
@@ -91,10 +93,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration:
-            const BoxDecoration(gradient: DashboardColors.backgroundGradient),
+        decoration: const BoxDecoration(
+          gradient: DashboardColors.backgroundGradient,
+        ),
         child: Row(
           children: [
+            // Sol panel: Dashboard
             Expanded(
               flex: 1,
               child: Scaffold(
@@ -123,10 +127,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 children: [
                                   TimeAndTemp(
                                     constraints: constraints,
-                                    time: _vehicleDataList[11].value ??
-                                        "--:--:--",
-                                    temperature:
-                                        _vehicleDataList[2].value ?? "-- °C",
+                                    time: _vehicleDataList[11].value!,
+                                    temperature: _vehicleDataList[2].value!,
                                   ),
                                   Expanded(
                                     child: Stack(
@@ -139,7 +141,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                             const Spacer(),
                                             CurrentSpeed(
                                               speed: int.parse(
-                                                _vehicleDataList[3]
+                                                _vehicleDataList[3]!
                                                     .value!
                                                     .split(' ')
                                                     .first,
@@ -154,20 +156,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                                   'assets/icons/speed_miter.svg',
                                                   height: 32,
                                                 ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 8),
-                                                  child: Text(
-                                                    _vehicleDataList[3].value!,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .titleMedium!
-                                                        .copyWith(
-                                                          color: DashboardColors
-                                                              .accentBlue,
-                                                        ),
-                                                  ),
+                                                const SizedBox(width: 8),
+                                                Text(
+                                                  _vehicleDataList[3]!.value!,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .titleMedium!
+                                                      .copyWith(
+                                                        color: DashboardColors
+                                                            .accentBlue,
+                                                      ),
                                                 ),
                                               ],
                                             ),
@@ -177,46 +175,40 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                           ],
                                         ),
                                         ...List.generate(
-                                            8,
-                                            (index) => Positioned(
-                                                  bottom: 20 + 2.0 * index,
-                                                  left: constraints.maxWidth *
-                                                          0.13 -
-                                                      30 * index,
-                                                  height:
-                                                      constraints.maxHeight *
-                                                          0.8,
-                                                  width: constraints.maxWidth *
-                                                      0.31,
-                                                  child: Opacity(
-                                                    opacity: 1 - index * 0.1,
-                                                    child: CustomPaint(
-                                                        painter:
-                                                            SpeedLinePainter()),
-                                                  ),
-                                                )),
+                                          8,
+                                          (i) => Positioned(
+                                            bottom: 20.0 + 2.0 * i,
+                                            left: constraints.maxWidth * 0.13 -
+                                                30 * i,
+                                            height: constraints.maxHeight * 0.8,
+                                            width: constraints.maxWidth * 0.31,
+                                            child: Opacity(
+                                              opacity: 1.0 - i * 0.1,
+                                              child: CustomPaint(
+                                                painter: SpeedLinePainter(),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
                                         ...List.generate(
-                                            8,
-                                            (index) => Positioned(
-                                                  bottom: 20 + 2.0 * index,
-                                                  right: constraints.maxWidth *
-                                                          0.13 -
-                                                      30 * index,
-                                                  height:
-                                                      constraints.maxHeight *
-                                                          0.8,
-                                                  width: constraints.maxWidth *
-                                                      0.31,
-                                                  child: Transform.scale(
-                                                    scaleX: -1,
-                                                    child: Opacity(
-                                                      opacity: 1 - index * 0.1,
-                                                      child: CustomPaint(
-                                                          painter:
-                                                              SpeedLinePainter()),
-                                                    ),
-                                                  ),
-                                                )),
+                                          8,
+                                          (i) => Positioned(
+                                            bottom: 20.0 + 2.0 * i,
+                                            right: constraints.maxWidth * 0.13 -
+                                                30.0 * i,
+                                            height: constraints.maxHeight * 0.8,
+                                            width: constraints.maxWidth * 0.31,
+                                            child: Transform.scale(
+                                              scaleX: -1,
+                                              child: Opacity(
+                                                opacity: 1 - i * 0.1,
+                                                child: CustomPaint(
+                                                  painter: SpeedLinePainter(),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -231,8 +223,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
               ),
             ),
+
             const VerticalDivider(
-                color: DashboardColors.textWhite, thickness: 1),
+              color: DashboardColors.textWhite,
+              thickness: 1,
+            ),
+
+            // Sağ panel: Map / Bluetooth / Data
             Expanded(
               flex: 1,
               child: _showMap
@@ -240,12 +237,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       children: [
                         Positioned.fill(
                           child: MapviewScreen(
-                            onExit: () {},
-                            onMapReady: () {
-                              setState(() {
-                                _isMapLoading = false;
-                              });
-                            },
+                            onExit: () => setState(() => _showMap = false),
+                            onMapReady: () =>
+                                setState(() => _isMapLoading = false),
                           ),
                         ),
                         if (_isMapLoading)
@@ -254,17 +248,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           bottom: 20,
                           right: 20,
                           child: ElevatedButton.icon(
-                            onPressed: () {
-                              setState(() {
-                                _showMap = false;
-                                _isMapLoading = false;
-                              });
-                            },
+                            onPressed: () => setState(() => _showMap = false),
                             icon: const Icon(Icons.arrow_back),
                             label: const Text('Geri'),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: DashboardColors.buttonBackground,
-                              foregroundColor: Colors.white,
+                              foregroundColor: DashboardColors.textWhite,
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 16, vertical: 12),
                               shape: RoundedRectangleBorder(
@@ -275,81 +264,75 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ),
                       ],
                     )
-                  : Stack(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const SizedBox(height: 10),
-                              Expanded(
-                                child: ListView(
-                                  children: _vehicleDataList.map((data) {
-                                    return Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 4),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            '${data.label}:',
-                                            style: const TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white,
-                                            ),
+                  : _showBluetoothList
+                      ? BluetoothListWidget(
+                          onExit: () =>
+                              setState(() => _showBluetoothList = false),
+                        )
+                      : Stack(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: ListView(
+                                children: _vehicleDataList.map((data) {
+                                  return Padding(
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 4),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          '${data.label}:',
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white,
                                           ),
-                                          const SizedBox(width: 8),
-                                          Text(
-                                            data.value!,
-                                            style: const TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white,
-                                            ),
+                                        ),
+                                        const SizedBox(width: 8),
+                                        Text(
+                                          data.value!,
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white,
                                           ),
-                                        ],
-                                      ),
-                                    );
-                                  }).toList(),
-                                ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                }).toList(),
                               ),
-                            ],
-                          ),
+                            ),
+                            Positioned(
+                              bottom: 20,
+                              right: 20,
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  IconButton(
+                                    onPressed: () => setState(
+                                        () => _showBluetoothList = true),
+                                    icon: const Icon(Icons.bluetooth,
+                                        color: Colors.white),
+                                    tooltip: 'Bluetooth',
+                                    iconSize: 32,
+                                  ),
+                                  const SizedBox(width: 10),
+                                  IconButton(
+                                    onPressed: () => setState(() {
+                                      _isMapLoading = true;
+                                      _showMap = true;
+                                    }),
+                                    icon: const Icon(Icons.map,
+                                        color: Colors.white),
+                                    tooltip: 'Haritayı Göster',
+                                    iconSize: 32,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
-                        Positioned(
-                          bottom: 20,
-                          right: 20,
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              IconButton(
-                                onPressed: () {
-                                  // Bluetooth işlemi
-                                },
-                                icon: const Icon(Icons.bluetooth,
-                                    color: Colors.white),
-                                tooltip: 'Bluetooth',
-                                iconSize: 32,
-                              ),
-                              const SizedBox(width: 10),
-                              IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    _isMapLoading = true;
-                                    _showMap = true;
-                                  });
-                                },
-                                icon:
-                                    const Icon(Icons.map, color: Colors.white),
-                                tooltip: 'Haritayı Göster',
-                                iconSize: 32,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
             ),
           ],
         ),
