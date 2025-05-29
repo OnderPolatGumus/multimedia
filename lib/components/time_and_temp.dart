@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:multimedia/components/dashboard_colors.dart';
+
 class TimeAndTemp extends StatelessWidget {
   final BoxConstraints constraints;
   final String time;
@@ -19,7 +21,9 @@ class TimeAndTemp extends StatelessWidget {
       width: constraints.maxWidth * 0.21,
       height: constraints.maxHeight * 0.11,
       child: DefaultTextStyle(
-        style: Theme.of(context).textTheme.titleMedium!,
+        style: Theme.of(context).textTheme.titleMedium!.copyWith(
+              color: DashboardColors.textWhite,
+            ),
         child: Row(
           children: [
             Text(time),

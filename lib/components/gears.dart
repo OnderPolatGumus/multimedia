@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dashboard_colors.dart';
 
 class Gears extends StatefulWidget {
   const Gears({
@@ -33,8 +34,8 @@ class _GearsState extends State<Gears> {
                   widget.gears[index],
                   style: TextStyle(
                     color: index == selectedGearIndex
-                        ? const Color.fromARGB(255, 207, 213, 216)
-                        : Colors.white10,
+                        ? DashboardColors.textWhite
+                        : DashboardColors.inactiveText,
                   ),
                 ),
               )),

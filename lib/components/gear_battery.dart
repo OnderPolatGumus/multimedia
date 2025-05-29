@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../painterClasses.dart';
 import 'gears.dart';
 
+import 'dashboard_colors.dart';
+
 class GearAndBattery extends StatelessWidget {
   const GearAndBattery({
     Key? key,
@@ -32,13 +34,13 @@ class GearAndBattery extends StatelessWidget {
                       text: "Rest. ",
                       style: TextStyle(
                         fontSize: 16,
-                        color: Colors.white38,
+                        color: DashboardColors.textWhite38,
                       ),
                       children: const [
                         TextSpan(
                           text: "465km",
                           style: TextStyle(
-                            color: Color.fromARGB(255, 255, 255, 255),
+                            color: DashboardColors.textPure,
                           ),
                         ),
                       ],
@@ -55,7 +57,7 @@ class GearAndBattery extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w500,
-                              color: Colors.white38,
+                              color: DashboardColors.textWhite38,
                             ),
                           ),
                           const SizedBox(width: 10),
@@ -75,7 +77,7 @@ class GearAndBattery extends StatelessWidget {
                             child: Text(
                               "100%",
                               style: TextStyle(
-                                color: Color.fromARGB(255, 255, 255, 255),
+                                color: DashboardColors.textPure,
                               ),
                             ),
                           )
@@ -101,14 +103,14 @@ class GearAndBattery extends StatelessWidget {
                       "Avg. ",
                       style: TextStyle(
                         fontSize: 16,
-                        color: Colors.white24,
+                        color: DashboardColors.textWhite24,
                       ),
                     ),
                     Text(
                       "11.3 w/km",
                       style: TextStyle(
                         fontSize: 16,
-                        color: Colors.white54,
+                        color: DashboardColors.textWhite54,
                       ),
                     ),
                   ],
@@ -128,14 +130,14 @@ class GearAndBattery extends StatelessWidget {
                       "ODO. ",
                       style: TextStyle(
                         fontSize: 16,
-                        color: Colors.white24,
+                        color: DashboardColors.textWhite24,
                       ),
                     ),
                     Text(
                       "6666.6km",
                       style: TextStyle(
                         fontSize: 16,
-                        color: Colors.white54,
+                        color: DashboardColors.textWhite54,
                       ),
                     ),
                   ],
@@ -168,7 +170,7 @@ class AvgWattPerKmPrinter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()
-      ..color = const Color(0xFF6B4339)
+      ..color = DashboardColors.avgWattPerKmPrinterColor
       ..style = PaintingStyle.fill;
 
     // paint.shader = LinearGradient(colors: colors)
@@ -191,7 +193,7 @@ class OdoPrinter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()
-      ..color = const Color(0xFF6B4339)
+      ..color = DashboardColors.avgWattPerKmPrinterColor
       ..style = PaintingStyle.fill;
 
     // paint.shader = LinearGradient(colors: colors)
