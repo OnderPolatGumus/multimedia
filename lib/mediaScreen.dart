@@ -36,37 +36,59 @@ class _DashboardScreenState extends State<DashboardScreen> {
   bool _showBluetoothList = false;
 
   final List<VehicleData> _vehicleDataList = [
-    VehicleData(label: 'Battery Voltage', value: '12.8V'),
+    VehicleData(label: 'Battery Voltage', value: '12.8V'), //0
     VehicleData(label: 'Battery Current', value: '5.2A'),
     VehicleData(label: 'Battery Temperature', value: '35°C'),
     VehicleData(label: 'Speed', value: '0 km/h'),
     VehicleData(label: 'Proximity', value: '5m'),
-    VehicleData(label: 'Tire Pressure FL', value: '35 PSI'),
+    VehicleData(label: 'Tire Pressure FL', value: '35 PSI'), //5
     VehicleData(label: 'Tire Pressure FR', value: '33 PSI'),
     VehicleData(label: 'Tire Pressure RL', value: '34 PSI'),
     VehicleData(label: 'Tire Pressure RR', value: '32 PSI'),
     VehicleData(label: 'Fuel (Wh)', value: '1500 Wh'),
-    VehicleData(label: 'Fuel (km/h)', value: '0 km/h'),
+    VehicleData(label: 'Fuel (km/h)', value: '0 km'), //10
     VehicleData(label: 'Time', value: getFormattedTime()),
     VehicleData(label: 'Start', value: '0 ms'),
     VehicleData(label: 'Date', value: getFormattedDate()),
   ];
 
+  //simulation later will be real data
   void _startPeriodicUpdates() {
     _timer = Timer.periodic(const Duration(milliseconds: 100), (_) {
       setState(() {
         _tickCounter++;
-        _vehicleDataList[11].value = getFormattedTime();
-        _vehicleDataList[13].value = getFormattedDate();
+        // Battery Voltage
         _vehicleDataList[0].value =
             '${(12.0 + _tickCounter * 0.01).toStringAsFixed(2)}V';
+        // Battery Current
         _vehicleDataList[1].value =
             '${(5.0 + _tickCounter * 0.02).toStringAsFixed(2)}A';
+        // Battery Temperature
         _vehicleDataList[2].value = '${35 + _tickCounter % 10}°C';
+        // Speed
         final speed = 120 + _tickCounter % 10;
         _vehicleDataList[3].value = '$speed km/h';
+        // Proximity
+        _vehicleDataList[4].value = '${5 + _tickCounter % 10}m';
+        //Tire Pressure FR
+        _vehicleDataList[5].value = '${35 + _tickCounter % 10}psi';
+        //Tire Pressure FL
+        _vehicleDataList[6].value = '${33 + _tickCounter % 10}psi';
+        //Tire Pressure RL
+        _vehicleDataList[7].value = '${34 + _tickCounter % 10}psi';
+        //Tire Pressure RR
+        _vehicleDataList[8].value = '${32 + _tickCounter % 10}psi';
+        //Fuel WH
         _vehicleDataList[9].value = '${1500 + _tickCounter * 2} Wh';
-        _vehicleDataList[10].value = '${180 + _tickCounter} km/h';
+        //Fuel km
+        _vehicleDataList[10].value = '${180 + _tickCounter} km';
+        //Time
+        _vehicleDataList[11].value = getFormattedTime();
+        //Elapsed Time
+        _vehicleDataList[12].value =
+            '${(int.tryParse(_vehicleDataList[12].value ?? '0') ?? 0) + 1}';
+        //Date
+        _vehicleDataList[13].value = getFormattedDate();
       });
     });
   }
