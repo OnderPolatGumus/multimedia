@@ -5,11 +5,31 @@ import 'dart:io';
 class BluetoothDevice {
   final String name;
   final String macAddress;
-  BluetoothDevice({required this.name, required this.macAddress});
+  bool isConnected;
+  BluetoothDevice({
+    required this.name,
+    required this.macAddress,
+    this.isConnected = false,
+  });
 }
 
 Future<List<BluetoothDevice>> fetchBluetoothDevices() async {
   final result = await Process.run('bluetoothctl', ['devices']);
+  final connectedResult = await Process.run('bluetoothctl', ['info']);
+
+  final connectedMacs = <String>{};
+  if (connectedResult.exitCode == 0) {
+    final lines = connectedResult.stdout.toString().split('\n');
+    for (var line in lines) {
+      if (line.trim().startsWith('Device')) {
+        final parts = line.split(' ');
+        if (parts.length > 1) {
+          connectedMacs.add(parts[1]);
+        }
+      }
+    }
+  }
+
   if (result.exitCode != 0) return [];
 
   final lines = result.stdout.toString().split('\n');
@@ -17,7 +37,8 @@ Future<List<BluetoothDevice>> fetchBluetoothDevices() async {
     final parts = line.split(' ');
     final mac = parts[1];
     final name = parts.sublist(2).join(' ');
-    return BluetoothDevice(name: name, macAddress: mac);
+    final isConnected = connectedMacs.contains(mac);
+    return BluetoothDevice(name: name, macAddress: mac, isConnected: isConnected);
   }).toList();
 }
 
@@ -36,6 +57,17 @@ class _BluetoothListWidgetState extends State<BluetoothListWidget> {
   void initState() {
     super.initState();
     _deviceFuture = fetchBluetoothDevices();
+  }
+
+  Future<void> _toggleConnection(BluetoothDevice device) async {
+    final cmd = device.isConnected
+        ? ['disconnect', device.macAddress]
+        : ['connect', device.macAddress];
+
+    await Process.run('bluetoothctl', cmd);
+    setState(() {
+      _deviceFuture = fetchBluetoothDevices();
+    });
   }
 
   @override
@@ -73,10 +105,17 @@ class _BluetoothListWidgetState extends State<BluetoothListWidget> {
                           style: const TextStyle(color: Colors.white)),
                       subtitle: Text(device.macAddress,
                           style: const TextStyle(color: Colors.grey)),
-                      leading: const Icon(Icons.bluetooth, color: Colors.blue),
-                      onTap: () {
-                        // Bağlantı kurulabilir (ileride eklenecek)
-                      },
+                      leading: Icon(
+                        Icons.bluetooth,
+                        color: device.isConnected ? Colors.green : Colors.blue,
+                      ),
+                      trailing: TextButton(
+                        onPressed: () => _toggleConnection(device),
+                        child: Text(
+                          device.isConnected ? 'Bağlantıyı Kes' : 'Bağlan',
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                      ),
                     );
                   },
                 );
