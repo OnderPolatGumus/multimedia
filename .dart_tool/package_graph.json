@@ -7,6 +7,7 @@
       "name": "multimedia",
       "version": "0.1.0",
       "dependencies": [
+        "desktop_multi_window",
         "fl_chart",
         "flutter",
         "flutter_map",
@@ -17,7 +18,9 @@
         "latlong2",
         "path_provider",
         "permission_handler",
+        "screen_retriever",
         "syncfusion_flutter_gauges",
+        "window_manager",
         "window_size"
       ],
       "devDependencies": [
@@ -58,6 +61,33 @@
         "test_api",
         "vector_math",
         "vm_service"
+      ]
+    },
+    {
+      "name": "desktop_multi_window",
+      "version": "0.2.1",
+      "dependencies": [
+        "flutter"
+      ]
+    },
+    {
+      "name": "screen_retriever",
+      "version": "0.2.0",
+      "dependencies": [
+        "flutter",
+        "screen_retriever_linux",
+        "screen_retriever_macos",
+        "screen_retriever_platform_interface",
+        "screen_retriever_windows"
+      ]
+    },
+    {
+      "name": "window_manager",
+      "version": "0.4.3",
+      "dependencies": [
+        "flutter",
+        "path",
+        "screen_retriever"
       ]
     },
     {
@@ -352,6 +382,39 @@
       ]
     },
     {
+      "name": "screen_retriever_windows",
+      "version": "0.2.0",
+      "dependencies": [
+        "flutter",
+        "screen_retriever_platform_interface"
+      ]
+    },
+    {
+      "name": "screen_retriever_platform_interface",
+      "version": "0.2.0",
+      "dependencies": [
+        "flutter",
+        "json_annotation",
+        "plugin_platform_interface"
+      ]
+    },
+    {
+      "name": "screen_retriever_macos",
+      "version": "0.2.0",
+      "dependencies": [
+        "flutter",
+        "screen_retriever_platform_interface"
+      ]
+    },
+    {
+      "name": "screen_retriever_linux",
+      "version": "0.2.0",
+      "dependencies": [
+        "flutter",
+        "screen_retriever_platform_interface"
+      ]
+    },
+    {
       "name": "web",
       "version": "1.1.0",
       "dependencies": []
@@ -536,6 +599,20 @@
       "dependencies": []
     },
     {
+      "name": "plugin_platform_interface",
+      "version": "2.1.8",
+      "dependencies": [
+        "meta"
+      ]
+    },
+    {
+      "name": "json_annotation",
+      "version": "4.9.0",
+      "dependencies": [
+        "meta"
+      ]
+    },
+    {
       "name": "typed_data",
       "version": "1.4.0",
       "dependencies": [
@@ -575,13 +652,6 @@
       "name": "args",
       "version": "2.7.0",
       "dependencies": []
-    },
-    {
-      "name": "plugin_platform_interface",
-      "version": "2.1.8",
-      "dependencies": [
-        "meta"
-      ]
     },
     {
       "name": "flutter_web_plugins",

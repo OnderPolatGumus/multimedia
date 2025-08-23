@@ -50,6 +50,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "desktop_multi_window",
+      "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/desktop_multi_window-0.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "equatable",
       "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/equatable-2.0.7",
       "packageUri": "lib/",
@@ -75,7 +81,7 @@
     },
     {
       "name": "flutter",
-      "rootUri": "file:///home/onderpolatgumus/flutter/packages/flutter",
+      "rootUri": "file:///home/onderpolatgumus/development/flutter/packages/flutter",
       "packageUri": "lib/",
       "languageVersion": "3.7"
     },
@@ -99,13 +105,13 @@
     },
     {
       "name": "flutter_test",
-      "rootUri": "file:///home/onderpolatgumus/flutter/packages/flutter_test",
+      "rootUri": "file:///home/onderpolatgumus/development/flutter/packages/flutter_test",
       "packageUri": "lib/",
       "languageVersion": "3.7"
     },
     {
       "name": "flutter_web_plugins",
-      "rootUri": "file:///home/onderpolatgumus/flutter/packages/flutter_web_plugins",
+      "rootUri": "file:///home/onderpolatgumus/development/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
       "languageVersion": "3.7"
     },
@@ -132,6 +138,12 @@
       "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/intl-0.20.1",
       "packageUri": "lib/",
       "languageVersion": "3.3"
+    },
+    {
+      "name": "json_annotation",
+      "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/json_annotation-4.9.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
     },
     {
       "name": "latlong2",
@@ -314,8 +326,38 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "screen_retriever",
+      "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/screen_retriever-0.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "screen_retriever_linux",
+      "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/screen_retriever_linux-0.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "screen_retriever_macos",
+      "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/screen_retriever_macos-0.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "screen_retriever_platform_interface",
+      "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/screen_retriever_platform_interface-0.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "screen_retriever_windows",
+      "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/screen_retriever_windows-0.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "sky_engine",
-      "rootUri": "file:///home/onderpolatgumus/flutter/bin/cache/pkg/sky_engine",
+      "rootUri": "file:///home/onderpolatgumus/development/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
       "languageVersion": "3.7"
     },
@@ -416,6 +458,12 @@
       "languageVersion": "3.4"
     },
     {
+      "name": "window_manager",
+      "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/window_manager-0.4.3",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "window_size",
       "rootUri": "file:///home/onderpolatgumus/.pub-cache/hosted/pub.dev/window_size-0.1.0",
       "packageUri": "lib/",
@@ -447,8 +495,8 @@
     }
   ],
   "generator": "pub",
-  "generatorVersion": "3.8.0",
-  "flutterRoot": "file:///home/onderpolatgumus/flutter",
-  "flutterVersion": "3.32.0",
+  "generatorVersion": "3.8.1",
+  "flutterRoot": "file:///home/onderpolatgumus/development/flutter",
+  "flutterVersion": "3.32.5",
   "pubCache": "file:///home/onderpolatgumus/.pub-cache"
 }
